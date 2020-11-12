@@ -1,0 +1,73 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id "org.springframework.boot" version "2.3.5.RELEASE" apply false
+    id "net.ltgt.apt" version "0.21"
+}
+
+description = "Java example"
+
+ext {
+    mapstructVersion = "1.4.1.Final"
+    jjwtVersion = "0.9.1"
+    openCsvVersion = "4.6"
+    springfoxSwagger2Version = "2.9.2"
+
+
+//    springBootVersion = "2.3.2.RELEASE"
+//    springDataVersion = "2.3.2.RELEASE"
+//    springDependencyManagementVersion = "1.0.9.RELEASE"
+//    ltgtVersion = "0.21"
+//    springVersion = "5.2.8.RELEASE"
+//    springAopVersion = "5.2.8.RELEASE"
+//    googleApiClientVersion = "1.23.0"
+//    googleOAuthClientVersion = "1.23.0"
+//    googleApiServicesSheetsVersion = "v4-rev516-1.23.0"
+//    javaxValidationVersion = "2.0.1.Final"
+//    hibernateValidatorVersion = "6.0.16.Final"
+//    javaxELAPIVersion = "3.0.0"
+//    glassFishJavaxELVersion = "2.2.6"
+//    javassistVersion = "3.22.0-GA"
+//    checkstyleVersion = "8.8"
+//    jUnitJupiterVersion = "5.6.2"
+//    jUnitPlatformVersion = "1.4.0"
+//    mockitoJUnitJupiterVersion = "2.23.0"
+//    mockitoVersion = "2.18.3"
+//    assertjVersion = "3.9.1"
+//    slf4jVersion = "1.7.25"
+//    javaxValidationVersion = "2.0.1.Final"
+//    jjwtVersion = "0.9.1"
+//    aspectjweaverVersion = "1.9.2"
+}
+
+configure(allprojects) {
+    apply plugin: "java"
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: "net.ltgt.apt"
+    apply plugin: "net.ltgt.apt-idea"
+
+    group = "com.hukacode.java.example"
+    version = "0.0.1"
+
+    jar {
+        archiveAppendix = "java-example"
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
