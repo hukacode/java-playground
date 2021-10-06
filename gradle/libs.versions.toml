@@ -1,0 +1,30 @@
+[versions]
+mapstruct = '1.4.2.Final'
+quarkus = '2.10.1.Final'
+
+[libraries]
+lombok = 'org.projectlombok:lombok:1.18.24'
+je = 'com.sleepycat:je:18.3.12'
+crawler4j = 'edu.uci.ics:crawler4j:4.4.0'
+async-http-client = 'org.asynchttpclient:async-http-client:2.12.1'
+jsoup = 'org.jsoup:jsoup:1.13.1'
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstructJdk8 = { module = "org.mapstruct:mapstruct-jdk8", version.ref = "mapstruct" }
+mapstructProcessor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+junitJupiter = 'org.junit.jupiter:junit-jupiter:5.8.2'
+assertjCore = 'org.assertj:assertj-core:3.22.0'
+#jjwtVersion = '0.9.1'
+#openCsvVersion = ''
+quarkusBom = { module = 'io.quarkus.platform:quarkus-bom', version.ref = 'quarkus' }
+keycloak = 'org.keycloak:keycloak-spring-boot-starter:18.0.2'
+
+[bundles]
+quarkus = []
+
+[plugins]
+jmh = 'me.champeau.jmh:0.6.5'
+spring-boot = 'org.springframework.boot:2.7.1'
+quarkus = { id = 'io.quarkus', version.ref = 'quarkus' }
+apt = 'net.ltgt.apt:0.21'
+spotless = 'com.diffplug.spotless:6.5.2'
+spotbugs = 'com.github.spotbugs:5.0.6'

@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':library-management-domain')
+    implementation project(':library-management-port-in')
+    implementation project(':library-management-port-out')
+}

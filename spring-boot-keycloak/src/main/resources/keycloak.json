@@ -1,0 +1,12 @@
+{
+  "realm": "VTVcabSDK",
+  "auth-server-url": "http://localhost:8080/",
+  "ssl-required": "external",
+  "resource": "bos-api",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "19KBTeRwLyjy9gl2SihiaabTn9YRG3kF"
+  },
+  "confidential-port": 0,
+  "policy-enforcer": {}
+}

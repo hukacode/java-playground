@@ -1,0 +1,6 @@
+dependencies {
+    implementation libs.crawler4j
+    implementation libs.je
+    implementation libs.async.http.client
+    implementation libs.jsoup
+}

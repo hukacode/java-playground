@@ -1,0 +1,11 @@
+dependencies {
+    implementation project(':library-management-domain')
+    implementation project(':library-management-port-in')
+    implementation project(':library-management-port-out')
+    implementation project(':library-management-business')
+    implementation project(':library-management-third-party-data')
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

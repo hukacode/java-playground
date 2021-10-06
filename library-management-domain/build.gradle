@@ -1,0 +1,23 @@
+dependencies {
+    compileOnly libs.lombok
+}
+
+jar {
+    archiveAppendix = "library-management-domain"
+}
+
+version = "0.0.1.SNAPSHOT"
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = "library-management-domain"
+
+            from components.java
+        }
+    }
+}

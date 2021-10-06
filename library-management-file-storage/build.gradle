@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':library-management-domain')
+    implementation project(':library-management-port-out')
+    implementation 'com.opencsv:opencsv:5.6'
+
+}

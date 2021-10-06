@@ -1,0 +1,4 @@
+dependencies {
+    testImplementation project(':library-management-domain')
+    testImplementation libs.junitJupiter
+}

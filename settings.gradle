@@ -1,14 +1,38 @@
-rootProject.name = 'java-sandbox'
+rootProject.name = 'java-playground'
 
 include(
-        'goalkicker-downloader'
-        , 'project-template'
-        , 'improve-logging'
-        , 'security'
-        , 'logging'
-        , 'algorithms'
-        , 'post-backup'
-        , 'project-template'
-        , 'spring-boot.oauth2.social-login'
-        , 'restfb'
+        'core-java',
+        'algorithm',
+        'design-pattern',
+        'library-management-domain',
+        'library-management-business',
+        'library-management-port-in',
+        'library-management-port-out',
+        'library-management-file-storage',
+        'library-management-third-party-data',
+        'project-template',
+        'quarkus-rest',
+        'quarkus-security-keycloak-authorization',
+        'netflix-dgs',
+        'spring-boot-thymeleaf',
+        'spring-boot-mvc',
+        'spring-boot-spring-data',
+        'spring-boot-spring-security',
+        'spring-boot-swagger',
+        'spring-boot-jdbc-template',
+        'spring-boot-redis',
+        'spring-boot-transaction',
+        'spring-boot-monitor',
+        'spring-boot-mq',
+        'spring-boot-keycloak',
+        'spring-boot-restful',
+        'spring-boot-websocket',
+        'spring-boot-scheduled',
+        'spring-boot-async',
+        'spring-boot-mail',
+        'spring-boot-flyway',
+        'spring-boot-graphql',
+        'spring-keycloak',
+        'spring-boot-oauth2-resource-server',
+        'tool',
 )

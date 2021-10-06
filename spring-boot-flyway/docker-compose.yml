@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  flyway-demo-db:
+    image: "postgres:14.3"
+    container_name: flyway-demo-db
+    ports:
+      - "5432:5432"
+    networks:
+      - flyway-demo-network
+    environment:
+      - POSTGRES_DB=flyway-demo-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - flyway-demo-data:/var/lib/postgresql/data
+
+volumes:
+  flyway-demo-data:
+
+networks:
+  flyway-demo-network:
