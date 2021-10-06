@@ -1,0 +1,9 @@
+app:
+  security:
+    authorization:
+      authenticationHeaderName: Authorization
+    endpoint:
+      apiRootUrl: /api/**
+      signinUrl: /api/auth/signin
+      signupUrl: /api/auth/signup
+      tokenUrl: /api/auth/token

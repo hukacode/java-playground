@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+  <property name="LOG_PATH" value="${USERPROFILE:-${HOME}}/hukacode/tool/log"/>
+  <property name="LOG_FILE_INFO" value="${LOG_PATH}/info.log"/>
+  <property name="LOG_FILE_ERROR" value="${LOG_PATH}/error.log"/>
+  <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS, UTC} %level ${PID:- } [%user %session] [%t] %-40.40logger{39}@%method:%line - %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+  <springProfile name="!prod">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder name="enc" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+        <layout class="com.hukacode.logging.logback.GreatPatternLayout">
+          <pattern>
+            %clr(%d{yyyy-MM-dd HH:mm:ss.SSS, UTC}){faint} %clr(%level) %clr(${PID:- }){magenta} %clr([%user %session]){faint}%clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan}@%method:%line %clr(- ){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+          </pattern>
+        </layout>
+        <charset>utf8</charset>
+      </encoder>
+    </appender>
+
+    <root additivity="false" level="INFO">
+      <appender-ref ref="CONSOLE"/>
+    </root>
+    <logger additivity="false" level="DEBUG" name="com.hukacode.logging">
+      <appender-ref ref="CONSOLE"/>
+    </logger>
+  </springProfile>
+
+  <springProfile name="prod">
+    <appender name="LOG_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <file>${LOG_FILE_INFO}</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_FILE_INFO}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+        <!-- Days to keep -->
+        <maxHistory>7</maxHistory>
+        <!-- total size of all archive files, if total size > N, it will delete old archived file -->
+        <totalSizeCap>2GB</totalSizeCap>
+      </rollingPolicy>
+      <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        <level>INFO</level>
+        <onMatch>ACCEPT</onMatch>
+        <onMismatch>DENY</onMismatch>
+      </filter>
+      <encoder name="enc" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+        <layout class="com.hukacode.logging.logback.GreatPatternLayout">
+          <pattern>
+            ${FILE_LOG_PATTERN}
+          </pattern>
+        </layout>
+        <charset>utf8</charset>
+      </encoder>
+    </appender>
+
+    <appender name="LOG_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <file>${LOG_FILE_ERROR}</file>
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_FILE_ERROR}.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+        <!-- Days to keep -->
+        <maxHistory>7</maxHistory>
+        <!-- total size of all archive files, if total size > N, it will delete old archived file -->
+        <totalSizeCap>2GB</totalSizeCap>
+      </rollingPolicy>
+      <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>ERROR</level>
+      </filter>
+      <encoder name="enc" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+        <layout class="com.hukacode.logging.logback.GreatPatternLayout">
+          <pattern>
+            ${FILE_LOG_PATTERN}
+          </pattern>
+        </layout>
+        <charset>utf8</charset>
+      </encoder>
+    </appender>
+
+    <root additivity="false" level="INFO">
+      <appender-ref ref="LOG_INFO"/>
+      <appender-ref ref="LOG_ERROR"/>
+    </root>
+
+    <logger additivity="false" level="INFO" name="com.hukacode">
+      <appender-ref ref="LOG_INFO"/>
+    </logger>
+  </springProfile>
+
+</configuration>

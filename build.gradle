@@ -1,56 +1,123 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id "org.springframework.boot" version "2.3.5.RELEASE" apply false
-    id "net.ltgt.apt" version "0.21"
+    id 'org.springframework.boot' version '2.5.5' apply false
+    id 'net.ltgt.apt' version '0.21'
+    id 'com.diffplug.spotless' version '5.8.2'
+    id 'com.github.spotbugs' version '4.6.0'
+    id 'pmd'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'java'
 }
 
-description = "Java example"
+description = 'Hukacode sandbox'
 
 ext {
-    mapstructVersion = "1.4.1.Final"
-    jjwtVersion = "0.9.1"
+    mapstructVersion = '1.4.2.Final'
+    jjwtVersion = '0.9.1'
     openCsvVersion = "4.6"
     springfoxSwagger2Version = "2.9.2"
 
-
-//    springBootVersion = "2.3.2.RELEASE"
-//    springDataVersion = "2.3.2.RELEASE"
-//    springDependencyManagementVersion = "1.0.9.RELEASE"
-//    ltgtVersion = "0.21"
-//    springVersion = "5.2.8.RELEASE"
-//    springAopVersion = "5.2.8.RELEASE"
-//    googleApiClientVersion = "1.23.0"
-//    googleOAuthClientVersion = "1.23.0"
-//    googleApiServicesSheetsVersion = "v4-rev516-1.23.0"
-//    javaxValidationVersion = "2.0.1.Final"
-//    hibernateValidatorVersion = "6.0.16.Final"
-//    javaxELAPIVersion = "3.0.0"
-//    glassFishJavaxELVersion = "2.2.6"
-//    javassistVersion = "3.22.0-GA"
-//    checkstyleVersion = "8.8"
-//    jUnitJupiterVersion = "5.6.2"
-//    jUnitPlatformVersion = "1.4.0"
-//    mockitoJUnitJupiterVersion = "2.23.0"
-//    mockitoVersion = "2.18.3"
-//    assertjVersion = "3.9.1"
-//    slf4jVersion = "1.7.25"
-//    javaxValidationVersion = "2.0.1.Final"
-//    jjwtVersion = "0.9.1"
-//    aspectjweaverVersion = "1.9.2"
 }
 
 configure(allprojects) {
-    apply plugin: "java"
-    apply plugin: "io.spring.dependency-management"
-    apply plugin: "net.ltgt.apt"
-    apply plugin: "net.ltgt.apt-idea"
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'com.github.spotbugs'
+    apply plugin: 'pmd'
+    apply plugin: 'jacoco'
+    apply plugin: 'maven-publish'
 
-    group = "com.hukacode.java.example"
-    version = "0.0.1"
+    group = 'com.hukacode'
 
-    jar {
-        archiveAppendix = "java-example"
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+
+    test {
+        useJUnitPlatform()
+//        finalizedBy jacocoTestReport
+    }
+
+    jacoco {
+    }
+
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            xml.enabled false
+            csv.enabled false
+            html.destination file('${buildDir}/jacocoHtml')
+        }
+    }
+
+    pmd {
+        consoleOutput = true
+//        ruleSets = ['category/java/bestpractices.xml',
+//                    'category/java/codestyle.xml',
+//                    'category/java/design.xml',
+//                    'category/java/documentation.xml',
+//                    'category/java/errorprone.xml',
+//                    'category/java/performance.xml',
+//                    'category/java/security.xml']
+    }
+
+    spotless {
+//        ratchetFrom 'origin/main'
+        format 'misc', {
+            target '*.gradle', '*.md', '.gitignore'
+            trimTrailingWhitespace()
+            indentWithSpaces(2)
+            endWithNewline()
+        }
+        java {
+            toggleOffOn('formatter:off', 'formatter:on')
+            target 'src/*/java/**/*.java'
+            importOrder('java', 'javax', 'org', 'com')
+            removeUnusedImports()
+            googleJavaFormat()
+            licenseHeaderFile rootProject.file('config/spotless.license')
+        }
+    }
+//    compileJava.dependsOn spotlessApply
+
+    spotbugs {
+//        ignoreFailures = false
+//        showStackTraces = true
+//        showProgress = true
+//        effort = 'default'
+//        reportLevel = 'default'
+//        visitors = ['FindSqlInjection', 'SwitchFallthrough']
+//        omitVisitors = ['FindNonShortCircuit']
+//        reportsDir = file('$buildDir/spotbugs')
+//        includeFilter = file('include.xml')
+//        excludeFilter = file('exclude.xml')
+//        baselineFile = file('baseline.xml')
+//        onlyAnalyze = [ 'com.foobar.MyClass', 'com.foobar.mypkg.*' ]
+//        maxHeapSize = '1g'
+//        extraArgs = [ '-nested:false' ]
+//        jvmArgs = [ '-Duser.language=ja' ]
+    }
+
+    dependencies {
+        spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
+    }
+
+    tasks.matching { task -> task.name.startsWith('spotbugs') }.forEach {
+        it.reports {
+            html {
+                enabled = true
+                destination = file('$buildDir/spotbugs/main/spotbugs.html')
+                stylesheet = 'fancy-hist.xsl'
+            }
+            xml.enabled = false
+        }
     }
 
     repositories {
@@ -63,11 +130,4 @@ configure(allprojects) {
             mavenBom SpringBootPlugin.BOM_COORDINATES
         }
     }
-
-    test {
-        useJUnitPlatform()
-    }
-
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
 }
