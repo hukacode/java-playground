@@ -7,11 +7,11 @@ import dev.huka.playground.library_management.domain.Book;
 import dev.huka.playground.library_management.port.in.query.ReadBookQuery;
 import dev.huka.playground.library_management.port.out.book.BookDataProvider;
 import java.util.List;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
-public class ReadBookHandler implements ReadBookQuery {
-  private BookDataProvider bookDataProvider;
+@RequiredArgsConstructor
+public class ReadBookQueryHandler implements ReadBookQuery {
+  private final BookDataProvider bookDataProvider;
 
   @Override
   public List<Book> execute(ReadBookQuery.ReadBookInput readBookInput) {
