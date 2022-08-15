@@ -35,4 +35,5 @@ include(
         'spring-keycloak',
         'spring-boot-oauth2-resource-server',
         'tool',
+        'thymeleaf'
 )

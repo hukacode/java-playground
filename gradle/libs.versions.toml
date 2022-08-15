@@ -17,13 +17,15 @@ assertjCore = 'org.assertj:assertj-core:3.22.0'
 #openCsvVersion = ''
 quarkusBom = { module = 'io.quarkus.platform:quarkus-bom', version.ref = 'quarkus' }
 keycloak = 'org.keycloak:keycloak-spring-boot-starter:18.0.2'
+findsecbugs = 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
+thymeleaf = 'org.thymeleaf:thymeleaf:3.0.15.RELEASE'
 
 [bundles]
 quarkus = []
 
 [plugins]
 jmh = 'me.champeau.jmh:0.6.5'
-spring-boot = 'org.springframework.boot:2.7.1'
+spring-boot = 'org.springframework.boot:2.7.2'
 quarkus = { id = 'io.quarkus', version.ref = 'quarkus' }
 apt = 'net.ltgt.apt:0.21'
 spotless = 'com.diffplug.spotless:6.5.2'
