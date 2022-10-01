@@ -35,5 +35,8 @@ include(
         'spring-keycloak',
         'spring-boot-oauth2-resource-server',
         'tool',
-        'thymeleaf'
+        'thymeleaf',
+        'jigsaw:api',
+        'jigsaw:implementation',
+        'jigsaw:client',
 )
