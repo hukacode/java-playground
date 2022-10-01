@@ -1,13 +1,16 @@
 /*
  * Copyright 2022 huka.dev
  */
-package dev.huka.playground.core;
+package dev.huka.playground.core.stream;
 
+import dev.huka.playground.core.TestData;
 import dev.huka.playground.library_management.domain.Book;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+@Slf4j
 class StreamCreationTest {
 
   @Test

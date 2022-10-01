@@ -1,11 +1,12 @@
 /*
  * Copyright 2022 huka.dev
  */
-package dev.huka.playground.core;
+package dev.huka.playground.core.stream;
 
 import static java.util.stream.Collectors.groupingBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import dev.huka.playground.core.TestData;
 import dev.huka.playground.library_management.domain.Author;
 import dev.huka.playground.library_management.domain.Book;
 import java.util.Collection;

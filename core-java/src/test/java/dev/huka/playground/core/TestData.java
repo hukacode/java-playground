@@ -8,7 +8,7 @@ import dev.huka.playground.library_management.domain.Book;
 import java.util.List;
 
 public class TestData {
-  static List<Book> books =
+  public static List<Book> books =
       List.of(
           Book.builder()
               .title("Core Java Volume I")
