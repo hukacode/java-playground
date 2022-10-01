@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.apt)
     alias(libs.plugins.spotless)
     alias(libs.plugins.spotbugs)
+    alias(libs.plugins.gradle.versions.plugin)
+    alias(libs.plugins.version.catalog.update)
     id 'pmd'
     id 'jacoco'
     id 'maven-publish'
@@ -128,7 +130,7 @@ configure(allprojects) {
     }
 
     dependencies {
-        spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
+        spotbugsPlugins libs.findsecbugs
     }
 
     tasks.matching { task -> task.name.startsWith('spotbugs') }.forEach {

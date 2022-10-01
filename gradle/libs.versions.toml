@@ -1,32 +1,34 @@
 [versions]
-mapstruct = '1.4.2.Final'
-quarkus = '2.10.1.Final'
+mapstruct = "1.5.2.Final"
+quarkus = "2.13.0.Final"
 
 [libraries]
-lombok = 'org.projectlombok:lombok:1.18.24'
-je = 'com.sleepycat:je:18.3.12'
-crawler4j = 'edu.uci.ics:crawler4j:4.4.0'
-async-http-client = 'org.asynchttpclient:async-http-client:2.12.1'
-jsoup = 'org.jsoup:jsoup:1.13.1'
+assertjCore = "org.assertj:assertj-core:3.23.1"
+async-http-client = "org.asynchttpclient:async-http-client:2.12.3"
+crawler4j = "edu.uci.ics:crawler4j:4.4.0"
+findsecbugs = "com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0"
+je = "com.sleepycat:je:18.3.12"
+jsoup = "org.jsoup:jsoup:1.15.3"
+junitJupiter = "org.junit.jupiter:junit-jupiter:5.9.1"
+keycloak = "org.keycloak:keycloak-spring-boot-starter:19.0.2"
+lombok = "org.projectlombok:lombok:1.18.24"
+slf4j = "org.slf4j:slf4j-api:2.0.3"
+slf4j-simple = "org.slf4j:slf4j-simple:2.0.3"
+logback-classic = "ch.qos.logback:logback-classic:1.4.1"
 mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
 mapstructJdk8 = { module = "org.mapstruct:mapstruct-jdk8", version.ref = "mapstruct" }
 mapstructProcessor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
-junitJupiter = 'org.junit.jupiter:junit-jupiter:5.8.2'
-assertjCore = 'org.assertj:assertj-core:3.22.0'
 #jjwtVersion = '0.9.1'
 #openCsvVersion = ''
-quarkusBom = { module = 'io.quarkus.platform:quarkus-bom', version.ref = 'quarkus' }
-keycloak = 'org.keycloak:keycloak-spring-boot-starter:18.0.2'
-findsecbugs = 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
-thymeleaf = 'org.thymeleaf:thymeleaf:3.0.15.RELEASE'
-
-[bundles]
-quarkus = []
+quarkusBom = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus" }
+thymeleaf = "org.thymeleaf:thymeleaf:3.1.0.M2"
 
 [plugins]
-jmh = 'me.champeau.jmh:0.6.5'
-spring-boot = 'org.springframework.boot:2.7.2'
-quarkus = { id = 'io.quarkus', version.ref = 'quarkus' }
-apt = 'net.ltgt.apt:0.21'
-spotless = 'com.diffplug.spotless:6.5.2'
-spotbugs = 'com.github.spotbugs:5.0.6'
+apt = "net.ltgt.apt:0.21"
+gradle-versions-plugin = "com.github.ben-manes.versions:0.42.0"
+jmh = "me.champeau.jmh:0.6.8"
+quarkus = { id = "io.quarkus", version.ref = "quarkus" }
+spotbugs = "com.github.spotbugs:5.0.12"
+spotless = "com.diffplug.spotless:6.11.0"
+spring-boot = "org.springframework.boot:2.7.4"
+version-catalog-update = "nl.littlerobots.version-catalog-update:0.6.1"
