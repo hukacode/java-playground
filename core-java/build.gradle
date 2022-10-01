@@ -1,4 +1,6 @@
 dependencies {
+    implementation libs.logback.classic
+
     testImplementation project(':library-management-domain')
     testImplementation libs.junitJupiter
 }
